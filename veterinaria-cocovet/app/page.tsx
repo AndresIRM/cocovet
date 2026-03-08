@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 export default function HomePage() {
   const vetPhotos = [
-    "/veterinaria/Vet1.PNG",
+    "/clientes/Vet1.PNG",
     "/veterinaria/Vet2.jpg",
     "/veterinaria/Vet3.jpg",
   ];
@@ -195,7 +195,7 @@ export default function HomePage() {
               </div>
 
               <a
-                href="https://maps.google.com"
+                href="https://maps.app.goo.gl/Lbb5VmPnKAVb29VX8"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.pinkButton}
@@ -251,8 +251,7 @@ export default function HomePage() {
                 Reserva una consulta de forma rápida y sencilla
               </h2>
               <p className={styles.ctaText}>
-                Este botón puede llevar a la pantalla de citas, a un formulario o
-                a WhatsApp, según como quieras construir el flujo.
+                Agenda tu cita en el horario que mas se te acomode, sin llamadas ni complicaciones. Nuestro sistema de reservas en línea te permite elegir el servicio, fecha y hora que mejor se adapten a tus necesidades y las de tu mascota.
               </p>
             </div>
 
@@ -268,7 +267,7 @@ export default function HomePage() {
           <div className={styles.card}>
             <span className={styles.badge}>Clientes felices</span>
             <h2 className={styles.sectionTitle}>
-              Galería de pacientes y amigos de CocoVet
+              Pacientes y amigos de CocoVet
             </h2>
 
             <div className={styles.carousel}>
