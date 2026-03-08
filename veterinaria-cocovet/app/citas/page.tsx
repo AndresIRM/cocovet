@@ -128,7 +128,7 @@ export default function CitasPage() {
         return;
       }
 
-      setMessage("La cita fue agendada correctamente.");
+      setMessage("La cita fue agendada correctamente. Revisa tu correo para más detalles. Puede encontrarse en la bandeja de no deseados.");
 
       setForm({
         ownerName: "",
