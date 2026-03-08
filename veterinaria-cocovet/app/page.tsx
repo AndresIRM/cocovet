@@ -221,11 +221,10 @@ export default function HomePage() {
           <div className={styles.card}>
             <span className={styles.badgePink}>Servicios</span>
             <h2 className={styles.sectionTitle}>
-              Servicios veterinarios en un formato claro y ordenado
+              Servicios veterinarios 
             </h2>
             <p className={styles.sectionText}>
-              Presenta aquí los principales servicios de la clínica con tarjetas
-              rectangulares, limpias y con buen espacio.
+              servicios veterinarios que ofrecemos para cuidar la salud y bienestar de tu mascota. Desde consultas generales hasta procedimientos especializados, en CocoVet nos comprometemos a brindar atención de calidad y confianza para ti y tu compañero peludo.
             </p>
 
             <div className={styles.servicesGrid}>
