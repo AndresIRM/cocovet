@@ -178,8 +178,7 @@ export default function HomePage() {
               <span className={styles.badge}>Ubicación</span>
               <h2 className={styles.sectionTitle}>Visítanos en nuestra sucursal</h2>
               <p className={styles.sectionText}>
-                Agrega aquí la dirección real, teléfono, horarios de atención y
-                cualquier referencia útil para tus clientes.
+                Nos ubicamos en:
               </p>
 
               <div className={styles.infoList}>
