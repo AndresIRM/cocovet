@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 export default function HomePage() {
   const vetPhotos = [
-    "/clientes/Vet1.PNG",
+    "/clientes/Vet1.png",
     "/veterinaria/Vet2.jpg",
     "/veterinaria/Vet3.jpg",
   ];
