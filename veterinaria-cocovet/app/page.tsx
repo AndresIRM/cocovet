@@ -2,18 +2,21 @@ import styles from "./page.module.css";
 
 export default function HomePage() {
   const vetPhotos = [
-    "/veterinaria/vet-1.jpg",
-    "/veterinaria/vet-2.jpg",
-    "/veterinaria/vet-3.jpg",
+    "/veterinaria/Vet1.PNG",
+    "/veterinaria/Vet2.jpg",
+    "/veterinaria/Vet3.jpg",
   ];
 
   const clientPhotos = [
     "/clientes/Cliente1.jpg",
     "/clientes/Candy.jpg",
     "/clientes/Oso.jpg",
-    "/clientes/Cliente4.jpg",
-    "/clientes/Cliente5.jpg",
-    "/clientes/Cliente6.jpg",
+    "/clientes/Moana.png",
+    "/clientes/Bruma.jpg",
+    "/clientes/Syrax.jpg",
+    "/clientes/camila.jpg",
+    "/clientes/Ratanael.jpg",
+    "/clientes/Deyis.jpg",
   ];
 
   const services = [
@@ -27,7 +30,11 @@ export default function HomePage() {
       description:
         "Esquemas preventivos y aplicación de vacunas para perros y gatos.",
     },
-
+    {
+      title: "Hospitalización",
+      description:
+        "Cuidado médico especializado para mascotas que necesitan atención continua.",
+    },
     {
       title: "Urgencias",
       description:
