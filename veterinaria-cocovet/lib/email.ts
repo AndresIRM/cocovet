@@ -10,7 +10,7 @@ export async function sendEmail(to: string, subject: string, html: string) {
   });
 
   await transporter.sendMail({
-    from: `"COCO VET" <${process.env.GMAIL_USER}>`,
+    from: `"Cocovet" <${process.env.GMAIL_USER}>`,
     to,
     subject,
     html,
