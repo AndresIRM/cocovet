@@ -32,13 +32,13 @@ export async function notifyAppointmentCancelled(input: CancelNotifyInput) {
   const vetEmail = process.env.VET_NOTIFICATION_EMAIL ?? "";
   const dateText = formatAppointmentDateTime(input.appointmentDate);
 
-  const subjectClient = "Cita cancelada - COCO VET";
-  const subjectVet = "Cita cancelada - COCO VET";
+  const subjectClient = "Cita cancelada - Cocovet";
+  const subjectVet = "Cita cancelada - Cocovet";
 
   const clientHtml = `
     <div style="font-family: Arial, sans-serif; color:#1e293b;">
       <h2>Tu cita fue cancelada correctamente</h2>
-      <p>Hola <strong>${input.ownerName}</strong>, te confirmamos que tu cita en <strong>COCO VET</strong> fue cancelada.</p>
+      <p>Hola <strong>${input.ownerName}</strong>, te confirmamos que tu cita en <strong>Cocovet</strong> fue cancelada.</p>
       <ul>
         <li><strong>Mascota:</strong> ${input.petName}</li>
         <li><strong>Tipo:</strong> ${input.petType}</li>

@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmail(to: string, subject: string, html: string) {
   await transporter.sendMail({
-    from: `"COCO VET" <${process.env.GMAIL_USER}>`,
+    from: `"Cocovet" <${process.env.GMAIL_USER}>`,
     to,
     subject,
     html,
@@ -35,13 +35,13 @@ export async function notifyAppointmentCreated(input: NotifyInput) {
   const dateText = formatAppointmentDateTime(input.appointmentDate);
   const cancelUrl = buildCancelUrl(input.cancelToken);
 
-  const subjectClient = "Confirmación de cita - COCO VET";
-  const subjectVet = "Nueva cita agendada - COCO VET";
+  const subjectClient = "Confirmación de cita - Cocovet";
+  const subjectVet = "Nueva cita agendada - Cocovet";
 
   const clientHtml = `
     <div style="font-family: Arial, sans-serif; color:#1e293b;">
       <h2>Tu cita fue registrada correctamente</h2>
-      <p>Hola <strong>${input.ownerName}</strong>, tu cita en <strong>COCO VET</strong> ha sido agendada.</p>
+      <p>Hola <strong>${input.ownerName}</strong>, tu cita en <strong>Cocovet</strong> ha sido agendada.</p>
       <ul>
         <li><strong>Mascota:</strong> ${input.petName}</li>
         <li><strong>Tipo:</strong> ${input.petType}</li>
