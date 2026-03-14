@@ -45,6 +45,9 @@ export type AppointmentMinAggregateOutputType = {
   petTypeId: number | null
   date: Date | null
   serviceId: number | null
+  status: string | null
+  cancelToken: string | null
+  cancelledAt: Date | null
   createdAt: Date | null
 }
 
@@ -57,6 +60,9 @@ export type AppointmentMaxAggregateOutputType = {
   petTypeId: number | null
   date: Date | null
   serviceId: number | null
+  status: string | null
+  cancelToken: string | null
+  cancelledAt: Date | null
   createdAt: Date | null
 }
 
@@ -69,6 +75,9 @@ export type AppointmentCountAggregateOutputType = {
   petTypeId: number
   date: number
   serviceId: number
+  status: number
+  cancelToken: number
+  cancelledAt: number
   createdAt: number
   _all: number
 }
@@ -93,6 +102,9 @@ export type AppointmentMinAggregateInputType = {
   petTypeId?: true
   date?: true
   serviceId?: true
+  status?: true
+  cancelToken?: true
+  cancelledAt?: true
   createdAt?: true
 }
 
@@ -105,6 +117,9 @@ export type AppointmentMaxAggregateInputType = {
   petTypeId?: true
   date?: true
   serviceId?: true
+  status?: true
+  cancelToken?: true
+  cancelledAt?: true
   createdAt?: true
 }
 
@@ -117,6 +132,9 @@ export type AppointmentCountAggregateInputType = {
   petTypeId?: true
   date?: true
   serviceId?: true
+  status?: true
+  cancelToken?: true
+  cancelledAt?: true
   createdAt?: true
   _all?: true
 }
@@ -216,6 +234,9 @@ export type AppointmentGroupByOutputType = {
   petTypeId: number
   date: Date
   serviceId: number
+  status: string
+  cancelToken: string
+  cancelledAt: Date | null
   createdAt: Date
   _count: AppointmentCountAggregateOutputType | null
   _avg: AppointmentAvgAggregateOutputType | null
@@ -251,6 +272,9 @@ export type AppointmentWhereInput = {
   petTypeId?: Prisma.IntFilter<"Appointment"> | number
   date?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   serviceId?: Prisma.IntFilter<"Appointment"> | number
+  status?: Prisma.StringFilter<"Appointment"> | string
+  cancelToken?: Prisma.StringFilter<"Appointment"> | string
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Appointment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   petType?: Prisma.XOR<Prisma.PetTypeScalarRelationFilter, Prisma.PetTypeWhereInput>
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
@@ -265,6 +289,9 @@ export type AppointmentOrderByWithRelationInput = {
   petTypeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  cancelToken?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   petType?: Prisma.PetTypeOrderByWithRelationInput
   service?: Prisma.ServiceOrderByWithRelationInput
@@ -272,6 +299,8 @@ export type AppointmentOrderByWithRelationInput = {
 
 export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  date?: Date | string
+  cancelToken?: string
   AND?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
   OR?: Prisma.AppointmentWhereInput[]
   NOT?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
@@ -280,12 +309,13 @@ export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringFilter<"Appointment"> | string
   petName?: Prisma.StringFilter<"Appointment"> | string
   petTypeId?: Prisma.IntFilter<"Appointment"> | number
-  date?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   serviceId?: Prisma.IntFilter<"Appointment"> | number
+  status?: Prisma.StringFilter<"Appointment"> | string
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Appointment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   petType?: Prisma.XOR<Prisma.PetTypeScalarRelationFilter, Prisma.PetTypeWhereInput>
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
-}, "id">
+}, "id" | "date" | "cancelToken">
 
 export type AppointmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -296,6 +326,9 @@ export type AppointmentOrderByWithAggregationInput = {
   petTypeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  cancelToken?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AppointmentCountOrderByAggregateInput
   _avg?: Prisma.AppointmentAvgOrderByAggregateInput
@@ -316,6 +349,9 @@ export type AppointmentScalarWhereWithAggregatesInput = {
   petTypeId?: Prisma.IntWithAggregatesFilter<"Appointment"> | number
   date?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
   serviceId?: Prisma.IntWithAggregatesFilter<"Appointment"> | number
+  status?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
+  cancelToken?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
+  cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Appointment"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
 }
 
@@ -326,6 +362,9 @@ export type AppointmentCreateInput = {
   email: string
   petName: string
   date: Date | string
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
   petType: Prisma.PetTypeCreateNestedOneWithoutAppointmentsInput
   service: Prisma.ServiceCreateNestedOneWithoutAppointmentsInput
@@ -340,6 +379,9 @@ export type AppointmentUncheckedCreateInput = {
   petTypeId: number
   date: Date | string
   serviceId: number
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -350,6 +392,9 @@ export type AppointmentUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   petType?: Prisma.PetTypeUpdateOneRequiredWithoutAppointmentsNestedInput
   service?: Prisma.ServiceUpdateOneRequiredWithoutAppointmentsNestedInput
@@ -364,6 +409,9 @@ export type AppointmentUncheckedUpdateInput = {
   petTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceId?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -376,6 +424,9 @@ export type AppointmentCreateManyInput = {
   petTypeId: number
   date: Date | string
   serviceId: number
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -386,6 +437,9 @@ export type AppointmentUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -398,6 +452,9 @@ export type AppointmentUncheckedUpdateManyInput = {
   petTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceId?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -410,6 +467,9 @@ export type AppointmentCountOrderByAggregateInput = {
   petTypeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  cancelToken?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -427,6 +487,9 @@ export type AppointmentMaxOrderByAggregateInput = {
   petTypeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  cancelToken?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -439,6 +502,9 @@ export type AppointmentMinOrderByAggregateInput = {
   petTypeId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  cancelToken?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -463,6 +529,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -564,6 +634,9 @@ export type AppointmentCreateWithoutServiceInput = {
   email: string
   petName: string
   date: Date | string
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
   petType: Prisma.PetTypeCreateNestedOneWithoutAppointmentsInput
 }
@@ -576,6 +649,9 @@ export type AppointmentUncheckedCreateWithoutServiceInput = {
   petName: string
   petTypeId: number
   date: Date | string
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -617,6 +693,9 @@ export type AppointmentScalarWhereInput = {
   petTypeId?: Prisma.IntFilter<"Appointment"> | number
   date?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   serviceId?: Prisma.IntFilter<"Appointment"> | number
+  status?: Prisma.StringFilter<"Appointment"> | string
+  cancelToken?: Prisma.StringFilter<"Appointment"> | string
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Appointment"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Appointment"> | Date | string
 }
 
@@ -627,6 +706,9 @@ export type AppointmentCreateWithoutPetTypeInput = {
   email: string
   petName: string
   date: Date | string
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
   service: Prisma.ServiceCreateNestedOneWithoutAppointmentsInput
 }
@@ -639,6 +721,9 @@ export type AppointmentUncheckedCreateWithoutPetTypeInput = {
   petName: string
   date: Date | string
   serviceId: number
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -676,6 +761,9 @@ export type AppointmentCreateManyServiceInput = {
   petName: string
   petTypeId: number
   date: Date | string
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -686,6 +774,9 @@ export type AppointmentUpdateWithoutServiceInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   petType?: Prisma.PetTypeUpdateOneRequiredWithoutAppointmentsNestedInput
 }
@@ -698,6 +789,9 @@ export type AppointmentUncheckedUpdateWithoutServiceInput = {
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   petTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -709,6 +803,9 @@ export type AppointmentUncheckedUpdateManyWithoutServiceInput = {
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   petTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -720,6 +817,9 @@ export type AppointmentCreateManyPetTypeInput = {
   petName: string
   date: Date | string
   serviceId: number
+  status?: string
+  cancelToken?: string
+  cancelledAt?: Date | string | null
   createdAt?: Date | string
 }
 
@@ -730,6 +830,9 @@ export type AppointmentUpdateWithoutPetTypeInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   service?: Prisma.ServiceUpdateOneRequiredWithoutAppointmentsNestedInput
 }
@@ -742,6 +845,9 @@ export type AppointmentUncheckedUpdateWithoutPetTypeInput = {
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceId?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -753,6 +859,9 @@ export type AppointmentUncheckedUpdateManyWithoutPetTypeInput = {
   petName?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   serviceId?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -767,6 +876,9 @@ export type AppointmentSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   petTypeId?: boolean
   date?: boolean
   serviceId?: boolean
+  status?: boolean
+  cancelToken?: boolean
+  cancelledAt?: boolean
   createdAt?: boolean
   petType?: boolean | Prisma.PetTypeDefaultArgs<ExtArgs>
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
@@ -781,6 +893,9 @@ export type AppointmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   petTypeId?: boolean
   date?: boolean
   serviceId?: boolean
+  status?: boolean
+  cancelToken?: boolean
+  cancelledAt?: boolean
   createdAt?: boolean
   petType?: boolean | Prisma.PetTypeDefaultArgs<ExtArgs>
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
@@ -795,6 +910,9 @@ export type AppointmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   petTypeId?: boolean
   date?: boolean
   serviceId?: boolean
+  status?: boolean
+  cancelToken?: boolean
+  cancelledAt?: boolean
   createdAt?: boolean
   petType?: boolean | Prisma.PetTypeDefaultArgs<ExtArgs>
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
@@ -809,10 +927,13 @@ export type AppointmentSelectScalar = {
   petTypeId?: boolean
   date?: boolean
   serviceId?: boolean
+  status?: boolean
+  cancelToken?: boolean
+  cancelledAt?: boolean
   createdAt?: boolean
 }
 
-export type AppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerName" | "phone" | "email" | "petName" | "petTypeId" | "date" | "serviceId" | "createdAt", ExtArgs["result"]["appointment"]>
+export type AppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerName" | "phone" | "email" | "petName" | "petTypeId" | "date" | "serviceId" | "status" | "cancelToken" | "cancelledAt" | "createdAt", ExtArgs["result"]["appointment"]>
 export type AppointmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   petType?: boolean | Prisma.PetTypeDefaultArgs<ExtArgs>
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
@@ -841,6 +962,9 @@ export type $AppointmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     petTypeId: number
     date: Date
     serviceId: number
+    status: string
+    cancelToken: string
+    cancelledAt: Date | null
     createdAt: Date
   }, ExtArgs["result"]["appointment"]>
   composites: {}
@@ -1275,6 +1399,9 @@ export interface AppointmentFieldRefs {
   readonly petTypeId: Prisma.FieldRef<"Appointment", 'Int'>
   readonly date: Prisma.FieldRef<"Appointment", 'DateTime'>
   readonly serviceId: Prisma.FieldRef<"Appointment", 'Int'>
+  readonly status: Prisma.FieldRef<"Appointment", 'String'>
+  readonly cancelToken: Prisma.FieldRef<"Appointment", 'String'>
+  readonly cancelledAt: Prisma.FieldRef<"Appointment", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Appointment", 'DateTime'>
 }
     

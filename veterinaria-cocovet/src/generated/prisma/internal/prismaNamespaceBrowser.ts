@@ -81,6 +81,9 @@ export const AppointmentScalarFieldEnum = {
   petTypeId: 'petTypeId',
   date: 'date',
   serviceId: 'serviceId',
+  status: 'status',
+  cancelToken: 'cancelToken',
+  cancelledAt: 'cancelledAt',
   createdAt: 'createdAt'
 } as const
 
@@ -118,4 +121,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

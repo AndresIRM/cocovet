@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { buildSlotStrings, getDayRange, getBusinessHours } from "@/lib/booking";
+import {
+  buildSlotStrings,
+  getDayRange,
+  getBusinessHours,
+  filterPastSlotsForToday,
+} from "@/lib/booking";
 
 export async function GET(req: NextRequest) {
   try {
@@ -26,6 +31,7 @@ export async function GET(req: NextRequest) {
 
     const appointments = await prisma.appointment.findMany({
       where: {
+        status: "active",
         date: {
           gte: start,
           lte: end,
@@ -53,7 +59,8 @@ export async function GET(req: NextRequest) {
       })
     );
 
-    const available = allSlots.filter((slot) => !occupied.has(slot));
+    const notOccupied = allSlots.filter((slot) => !occupied.has(slot));
+    const available = filterPastSlotsForToday(date, notOccupied);
 
     return NextResponse.json({
       date,

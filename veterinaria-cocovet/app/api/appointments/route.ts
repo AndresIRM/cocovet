@@ -4,6 +4,7 @@ import {
   buildAppointmentDate,
   isHourAligned,
   isValidSlot,
+  isPastSlotForToday
 } from "@/lib/booking";
 import { notifyAppointmentCreated } from "@/lib/notifications";
 
@@ -50,6 +51,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (isPastSlotForToday(date, time)) {
+      return NextResponse.json(
+        { error: "No puedes agendar una cita en un horario que ya pasó" },
+        { status: 400 }
+      );
+    }
+
     const appointmentDate = buildAppointmentDate(date, time);
 
     const [petType, service, existing] = await Promise.all([
@@ -58,6 +66,7 @@ export async function POST(req: NextRequest) {
       prisma.appointment.findFirst({
         where: {
           date: appointmentDate,
+          status: "active",
         },
       }),
     ]);
@@ -107,6 +116,7 @@ export async function POST(req: NextRequest) {
       petType: petType.type,
       service: service.name,
       appointmentDate,
+      cancelToken: appointment.cancelToken,
     });
 
     return NextResponse.json({

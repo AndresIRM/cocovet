@@ -8,21 +8,25 @@ datasource db {
 }
 
 model Appointment {
-  id        String   @id @default(cuid())
-  ownerName String
-  phone     String
-  email     String
+  id                String   @id @default(cuid())
+  ownerName         String
+  phone             String
+  email             String
+  petName           String
 
-  petName   String
-  petTypeId Int
-  petType   PetType  @relation(fields: [petTypeId], references: [id])
+  petTypeId         Int
+  petType           PetType  @relation(fields: [petTypeId], references: [id])
 
-  date      DateTime
+  date              DateTime @unique
 
-  serviceId Int
-  service   Service  @relation(fields: [serviceId], references: [id])
+  serviceId         Int
+  service           Service  @relation(fields: [serviceId], references: [id])
 
-  createdAt DateTime @default(now())
+  status            String   @default("active")
+  cancelToken       String   @unique @default(cuid())
+  cancelledAt       DateTime?
+
+  createdAt         DateTime @default(now())
 }
 
 model Service {

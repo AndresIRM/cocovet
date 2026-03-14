@@ -313,7 +313,7 @@ export default function CitasPage() {
                         <option value="">Selecciona un servicio</option>
                         {services.map((item) => (
                           <option key={item.id} value={item.id}>
-                            {item.name} - ${item.price.toFixed(2)}
+                            {item.name} 
                           </option>
                         ))}
                       </select>
@@ -339,7 +339,7 @@ export default function CitasPage() {
                       <p className={styles.summaryLabel}>Servicio</p>
                       <p className={styles.summaryValue}>
                         {selectedService
-                          ? `${selectedService.name} - $${selectedService.price.toFixed(2)}`
+                          ? `${selectedService.name} `
                           : "Sin seleccionar"}
                       </p>
                     </div>

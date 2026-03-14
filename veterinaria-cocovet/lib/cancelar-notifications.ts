@@ -1,8 +1,7 @@
 import nodemailer from "nodemailer";
 import { formatAppointmentDateTime } from "./booking";
-import { buildCancelUrl } from "./urls";
 
-type NotifyInput = {
+type CancelNotifyInput = {
   ownerName: string;
   email: string;
   phone: string;
@@ -10,7 +9,6 @@ type NotifyInput = {
   petType: string;
   service: string;
   appointmentDate: Date;
-  cancelToken: string;
 };
 
 const transporter = nodemailer.createTransport({
@@ -30,36 +28,30 @@ async function sendEmail(to: string, subject: string, html: string) {
   });
 }
 
-export async function notifyAppointmentCreated(input: NotifyInput) {
+export async function notifyAppointmentCancelled(input: CancelNotifyInput) {
   const vetEmail = process.env.VET_NOTIFICATION_EMAIL ?? "";
   const dateText = formatAppointmentDateTime(input.appointmentDate);
-  const cancelUrl = buildCancelUrl(input.cancelToken);
 
-  const subjectClient = "Confirmación de cita - COCO VET";
-  const subjectVet = "Nueva cita agendada - COCO VET";
+  const subjectClient = "Cita cancelada - COCO VET";
+  const subjectVet = "Cita cancelada - COCO VET";
 
   const clientHtml = `
     <div style="font-family: Arial, sans-serif; color:#1e293b;">
-      <h2>Tu cita fue registrada correctamente</h2>
-      <p>Hola <strong>${input.ownerName}</strong>, tu cita en <strong>COCO VET</strong> ha sido agendada.</p>
+      <h2>Tu cita fue cancelada correctamente</h2>
+      <p>Hola <strong>${input.ownerName}</strong>, te confirmamos que tu cita en <strong>COCO VET</strong> fue cancelada.</p>
       <ul>
         <li><strong>Mascota:</strong> ${input.petName}</li>
         <li><strong>Tipo:</strong> ${input.petType}</li>
         <li><strong>Servicio:</strong> ${input.service}</li>
         <li><strong>Fecha y hora:</strong> ${dateText}</li>
       </ul>
-      <p>Si deseas cancelar tu cita, usa el siguiente enlace:</p>
-      <p>
-        <a href="${cancelUrl}" style="background:#b0235a;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;display:inline-block;">
-          Cancelar cita
-        </a>
-      </p>
+      <p>Si deseas agendar nuevamente, puedes hacerlo desde nuestro sitio.</p>
     </div>
   `;
 
   const vetHtml = `
     <div style="font-family: Arial, sans-serif; color:#1e293b;">
-      <h2>Nueva cita agendada</h2>
+      <h2>Una cita fue cancelada</h2>
       <ul>
         <li><strong>Cliente:</strong> ${input.ownerName}</li>
         <li><strong>Teléfono:</strong> ${input.phone}</li>
@@ -69,12 +61,6 @@ export async function notifyAppointmentCreated(input: NotifyInput) {
         <li><strong>Servicio:</strong> ${input.service}</li>
         <li><strong>Fecha y hora:</strong> ${dateText}</li>
       </ul>
-      <p>Enlace de cancelación de esta cita:</p>
-      <p>
-        <a href="${cancelUrl}" style="background:#b0235a;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;display:inline-block;">
-          Cancelar cita
-        </a>
-      </p>
     </div>
   `;
 
